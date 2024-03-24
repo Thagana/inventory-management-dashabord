@@ -6,11 +6,11 @@ import { useStoreActions, useStoreState } from "../store";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-type Props = {
+interface Props {
   children: React.ReactNode;
-};
+}
 
-const Template = (props: Props) => {
+const Template = (props: Props): JSX.Element => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -34,13 +34,13 @@ const Template = (props: Props) => {
           defaultSelectedKeys={[navigation]}
           items={[
             {
-              key: `invet`,
+              key: "invet",
               icon: <ShoppingCartOutlined />,
-              label: `Inventory`,
+              label: "Inventory",
               children: [
                 {
                   key: "1",
-                  label: `Product`,
+                  label: "Product",
                   onClick: () => {
                     navigate("/products");
                     updateNavigation("1");
@@ -48,7 +48,7 @@ const Template = (props: Props) => {
                 },
                 {
                   key: "2",
-                  label: `Create Product`,
+                  label: "Create Product",
                   onClick: () => {
                     navigate("/products/add");
                     updateNavigation("2");

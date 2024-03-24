@@ -1,10 +1,10 @@
-name: Node.js Staging CI
+name: Node.js Main CI
 
 on:
   push:
-    branches: [staging]
+    branches: [main]
   pull_request:
-    branches: [staging]
+    branches: [main]
 
 jobs:
   build:
