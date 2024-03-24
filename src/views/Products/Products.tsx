@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Template from "../Template";
-import { Table, Tag, Space } from "antd";
+import { Table, Tag } from "antd";
 import type { TableProps } from "antd";
 import { ProductService } from "../../services/product.service";
 import { Product } from "../../interface/product";
