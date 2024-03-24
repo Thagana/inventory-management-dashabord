@@ -1,5 +1,5 @@
-import Template from "../Template";
+import Template from '../Template'
 
-export default function Home() {
-  return <Template>Hello World</Template>;
+export default function Home () {
+  return <Template>Hello World</Template>
 }

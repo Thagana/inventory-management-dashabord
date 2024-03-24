@@ -1,7 +1,7 @@
-import { Flex } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import { Flex } from 'antd'
+import { LoadingOutlined } from '@ant-design/icons'
 
-export default function LoadingIndicator() {
+export default function LoadingIndicator () {
   return (
     <Flex
       gap="middle"
@@ -13,5 +13,5 @@ export default function LoadingIndicator() {
         <LoadingOutlined />
       </div>
     </Flex>
-  );
+  )
 }

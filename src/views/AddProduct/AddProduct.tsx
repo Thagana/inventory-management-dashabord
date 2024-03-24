@@ -1,20 +1,20 @@
-import * as React from "react";
-import { ProductService } from "../../services/product.service";
-import Template from "../Template";
-import { Button, Form, type FormProps, Input, InputNumber } from "antd";
-import { FieldType } from "../../interface/product-formtype";
-import { useNavigate } from "react-router-dom";
+import * as React from 'react'
+import { ProductService } from '../../services/product.service'
+import Template from '../Template'
+import { Button, Form, type FormProps, Input, InputNumber } from 'antd'
+import { type FieldType } from '../../interface/product-formtype'
+import { useNavigate } from 'react-router-dom'
 
-import "./add-product.style.css";
-import LoadingIndicator from "../../components/LoadingIndicator";
+import './add-product.style.css'
+import LoadingIndicator from '../../components/LoadingIndicator'
 
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
+const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
+  console.log('Failed:', errorInfo)
+}
 
-export default function AddProduct() {
-  const [loading, setLoading] = React.useState(false);
-  const navigate = useNavigate();
+export default function AddProduct () {
+  const [loading, setLoading] = React.useState(false)
+  const navigate = useNavigate()
   return (
     <Template>
       <div className="add-product-container">
@@ -29,13 +29,13 @@ export default function AddProduct() {
               initialValues={{ remember: true }}
               onFinish={async (values) => {
                 try {
-                  setLoading(true);
-                  await ProductService.createProduct(values);
-                  setLoading(false);
-                  navigate("/products");
+                  setLoading(true)
+                  await ProductService.createProduct(values)
+                  setLoading(false)
+                  navigate('/products')
                 } catch (error) {
-                  console.log(error);
-                  setLoading(false);
+                  console.log(error)
+                  setLoading(false)
                 }
               }}
               onFinishFailed={onFinishFailed}
@@ -45,7 +45,7 @@ export default function AddProduct() {
                 label="Product Name"
                 name="name"
                 rules={[
-                  { required: true, message: "Please provide a product name" },
+                  { required: true, message: 'Please provide a product name' }
                 ]}
               >
                 <Input className="input" />
@@ -57,8 +57,8 @@ export default function AddProduct() {
                 rules={[
                   {
                     required: true,
-                    message: "Please provide a product price",
-                  },
+                    message: 'Please provide a product price'
+                  }
                 ]}
               >
                 <InputNumber />
@@ -70,8 +70,8 @@ export default function AddProduct() {
                 rules={[
                   {
                     required: true,
-                    message: "Please provide a product quantity",
-                  },
+                    message: 'Please provide a product quantity'
+                  }
                 ]}
               >
                 <InputNumber />
@@ -84,8 +84,8 @@ export default function AddProduct() {
                 rules={[
                   {
                     required: true,
-                    message: "Please provide a product category ID",
-                  },
+                    message: 'Please provide a product category ID'
+                  }
                 ]}
               >
                 <InputNumber />
@@ -99,5 +99,5 @@ export default function AddProduct() {
         )}
       </div>
     </Template>
-  );
+  )
 }
