@@ -3,4 +3,5 @@ export type FieldType = {
   price: number;
   quantity: number;
   categoryID: number;
+  availability: string;
 };

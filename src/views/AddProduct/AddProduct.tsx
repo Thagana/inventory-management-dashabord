@@ -1,12 +1,12 @@
 import * as React from "react";
 import { ProductService } from "../../services/product.service";
 import Template from "../Template";
-import { Button, Form, type FormProps, Input, InputNumber, Flex } from "antd";
+import { Button, Form, type FormProps, Input, InputNumber } from "antd";
 import { FieldType } from "../../interface/product-formtype";
 import { useNavigate } from "react-router-dom";
-import { LoadingOutlined } from "@ant-design/icons";
 
 import "./add-product.style.css";
+import LoadingIndicator from "../../components/LoadingIndicator";
 
 const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
   console.log("Failed:", errorInfo);
@@ -18,18 +18,7 @@ export default function AddProduct() {
   return (
     <Template>
       <div className="add-product-container">
-        {loading && (
-          <Flex
-            gap="middle"
-            align="center"
-            justify="center"
-            className="loading-container"
-          >
-            <div>
-              <LoadingOutlined />
-            </div>
-          </Flex>
-        )}
+        {loading && <LoadingIndicator />}
         {!loading && (
           <div className="form-container">
             <Form
@@ -59,7 +48,7 @@ export default function AddProduct() {
                   { required: true, message: "Please provide a product name" },
                 ]}
               >
-                <Input />
+                <Input className="input" />
               </Form.Item>
 
               <Form.Item<FieldType>
@@ -67,7 +56,6 @@ export default function AddProduct() {
                 name="price"
                 rules={[
                   {
-                    type: "number",
                     required: true,
                     message: "Please provide a product price",
                   },
@@ -81,7 +69,6 @@ export default function AddProduct() {
                 name="quantity"
                 rules={[
                   {
-                    type: "number",
                     required: true,
                     message: "Please provide a product quantity",
                   },

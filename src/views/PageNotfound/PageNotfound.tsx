@@ -10,10 +10,10 @@ export default function PageNotfound() {
         <div>Page Not Found</div>
         <Button
           onClick={() => {
-            navigate("/");
+            navigate("/products");
           }}
         >
-          Go Home
+          Go To Products
         </Button>
       </div>
     </Flex>

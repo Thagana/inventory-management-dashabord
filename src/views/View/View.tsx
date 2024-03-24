@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Form, InputNumber, Input, Button, notification } from "antd";
+import { Form, InputNumber, Input, Button, notification, Select } from "antd";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 
@@ -32,7 +32,7 @@ export default function View() {
         console.log("Error:", error);
         setLoading(false);
       });
-  }, []);
+  }, [searchParams]);
 
   return (
     <Template>
@@ -115,6 +115,23 @@ export default function View() {
               ]}
             >
               <InputNumber />
+            </Form.Item>
+
+            <Form.Item<FieldType>
+              label="Avilability"
+              name="availability"
+              initialValue={product.availability}
+              rules={[
+                {
+                  required: true,
+                  message: "Please provide a product availability",
+                },
+              ]}
+            >
+              <Select>
+                <Select.Option value="Out Of Stock">Out Of Stock</Select.Option>
+                <Select.Option value="In Stock">In Stock</Select.Option>
+              </Select>
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

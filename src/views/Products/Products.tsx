@@ -7,6 +7,7 @@ import { ProductService } from "../../services/product.service";
 import { Product } from "../../interface/product";
 import { Button } from "antd/es/radio";
 import "./products.style.css";
+import Actions from "../../components/Actions";
 
 export default function Products() {
   const [products, setProducts] = React.useState<Product[]>([]);
@@ -43,7 +44,8 @@ export default function Products() {
       dataIndex: "availability",
       render: (_, record) => {
         let color = "green";
-        if (record.availability === "Out of Stock") {
+        console.log(record.availability);
+        if (record.availability === "Out Of Stock") {
           color = "red";
         }
         return <Tag color={color}>{record.availability.toUpperCase()}</Tag>;
@@ -53,28 +55,11 @@ export default function Products() {
       title: "Action",
       key: "action",
       render: (_, record) => (
-        <Space size="middle">
-          <Link to={`/products/view?productID=${record.productID}`}>
-            View Item
-          </Link>
-          <Button
-            onClick={async () => {
-              try {
-                setLoading(true);
-                const products = await ProductService.deleteProduct(
-                  record.productID,
-                );
-                setLoading(false);
-                setProducts(products);
-              } catch (error) {
-                console.log(error);
-                setLoading(false);
-              }
-            }}
-          >
-            Delete Item
-          </Button>
-        </Space>
+        <Actions
+          productID={record.productID}
+          setLoading={setLoading}
+          setProducts={setProducts}
+        />
       ),
     },
   ];
@@ -103,8 +88,24 @@ export default function Products() {
           Add
         </Button>
         <Button
-          onClick={() => {
-            // handle export data
+          onClick={async () => {
+            const products = await ProductService.getProducts();
+            const fileName = `export-${new Date()}`;
+
+            const json = JSON.stringify(products, null, 2);
+
+            const blob = new Blob([json], { type: "application/json" });
+
+            const href = URL.createObjectURL(blob);
+
+            const link = document.createElement("a");
+            link.href = href;
+            link.download = fileName + ".json";
+            document.body.appendChild(link);
+            link.click();
+
+            document.body.removeChild(link);
+            URL.revokeObjectURL(href);
           }}
         >
           Export

@@ -2,6 +2,7 @@ import React from "react";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useStoreActions, useStoreState } from "../store";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -15,7 +16,8 @@ const Template = (props: Props) => {
   } = theme.useToken();
 
   const navigate = useNavigate();
-
+  const navigation = useStoreState((state) => state.navigation);
+  const updateNavigation = useStoreActions((action) => action.updateNavigation);
   const { children } = props;
 
   return (
@@ -29,15 +31,30 @@ const Template = (props: Props) => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={[navigation]}
           items={[
             {
-              key: "1",
+              key: `invet`,
               icon: <ShoppingCartOutlined />,
-              label: "products",
-              onClick: () => {
-                navigate("/products");
-              },
+              label: `Inventory`,
+              children: [
+                {
+                  key: "1",
+                  label: `Product`,
+                  onClick: () => {
+                    navigate("/products");
+                    updateNavigation("1");
+                  },
+                },
+                {
+                  key: "2",
+                  label: `Create Product`,
+                  onClick: () => {
+                    navigate("/products/add");
+                    updateNavigation("2");
+                  },
+                },
+              ],
             },
           ]}
         />
