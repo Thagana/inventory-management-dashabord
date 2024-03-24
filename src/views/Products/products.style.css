@@ -1,0 +1,6 @@
+.header {
+    display: flex;
+    text-align: start;
+    justify-content: end;
+    padding: 10px;
+}
