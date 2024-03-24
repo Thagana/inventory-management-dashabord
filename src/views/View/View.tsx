@@ -5,15 +5,15 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 import { ProductService } from "../../services/product.service";
 
-import { Product } from "../../interface/product";
+import { type Product } from "../../interface/product";
 
 import Template from "../Template";
 
-import { FieldType } from "../../interface/product-formtype";
+import { type FieldType } from "../../interface/product-formtype";
 
 import "./view.style.css";
 
-export default function View() {
+export default function View(): JSX.Element {
   const [searchParams] = useSearchParams();
   const [product, setProduct] = React.useState<Product>();
   const [loading, setLoading] = React.useState(false);
