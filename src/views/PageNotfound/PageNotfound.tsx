@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Flex } from "antd";
 import Button from "antd/es/button";
 import { useNavigate } from "react-router-dom";
